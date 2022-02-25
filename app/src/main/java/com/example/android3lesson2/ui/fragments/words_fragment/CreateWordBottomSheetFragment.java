@@ -27,7 +27,6 @@ public class CreateWordBottomSheetFragment extends BottomSheetDialogFragment imp
     FragmentCreateWordBottomSheetBinding binding;
     WordsFragmentArgs args;
     PixabayViewModel viewModel;
-    OnImageClickListener onImageClickListener;
     Handler handler;
     ImageAdapter imageAdapter;
     String word;
@@ -121,5 +120,11 @@ public class CreateWordBottomSheetFragment extends BottomSheetDialogFragment imp
         image = wordModel.getImage();
 
 
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        binding = null;
     }
 }

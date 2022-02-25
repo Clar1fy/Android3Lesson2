@@ -56,11 +56,6 @@ public class CategoryFragment extends BaseFragment<FragmentCategoryBinding> impl
         });
     }
 
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        binding = null;
-    }
 
     @Override
     public void onClick(String category) {
@@ -68,4 +63,11 @@ public class CategoryFragment extends BaseFragment<FragmentCategoryBinding> impl
 
 
     }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        binding = null;
+    }
+
 }
