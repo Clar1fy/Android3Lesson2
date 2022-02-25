@@ -10,6 +10,15 @@
     <string name="fuck_you">fuck you</string>
     <string name="gdg">gdg</string>
     <string name="let_s_do_it">Let\'s do it</string>
+    <string name="image_from_board">image from board</string>
+    <string name="button_to_add_categories">button to add categories</string>
+    <string name="new_category">New category</string>
+    <string name="category_name">Category name</string>
+    <string name="create">Create</string>
+    <string name="button_to_add_words">button to add words</string>
+    <string name="create">Create</string>
+    <string name="type_the_word">Type the word</string>
+    <string name="new_category">New category</string>
 
 
 </resources>

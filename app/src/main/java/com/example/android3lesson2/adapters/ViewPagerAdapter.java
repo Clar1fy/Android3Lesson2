@@ -50,8 +50,8 @@ public class ViewPagerAdapter extends RecyclerView.Adapter<ViewPagerAdapter.View
         }
 
         public void onBind(ViewPagerModel viewPagerModel) {
-            binding.tvTitle.setText(viewPagerModel.getTitle());
-            binding.tvDescription.setText(viewPagerModel.getDescription());
+            binding.tvLabel.setText(viewPagerModel.getTitle());
+            binding.tvDesc.setText(viewPagerModel.getDescription());
             binding.imImage.setImageResource(viewPagerModel.getImage());
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override

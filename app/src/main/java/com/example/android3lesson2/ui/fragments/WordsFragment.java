@@ -1,31 +1,26 @@
 package com.example.android3lesson2.ui.fragments;
 
 import android.os.Bundle;
-import android.os.Handler;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.example.android3lesson2.adapters.ImageAdapter;
+import com.example.android3lesson2.adapters.WordAdapter;
 import com.example.android3lesson2.base.BaseFragment;
 import com.example.android3lesson2.databinding.FragmentWordsBinding;
-import com.example.android3lesson2.models.network_model.Hits;
+import com.example.android3lesson2.ui.fragments.dialog.CreateWordBottomSheetFragment;
+import com.example.android3lesson2.utils.interfaces.OnWordClickListener;
 import com.example.android3lesson2.viewmodel.PixabayViewModel;
-
-import java.util.ArrayList;
 
 import dagger.hilt.android.AndroidEntryPoint;
 
 @AndroidEntryPoint
-public class WordsFragment extends BaseFragment<FragmentWordsBinding> {
-    private static final int DELAY = 2000;
+public class WordsFragment extends BaseFragment<FragmentWordsBinding> implements OnWordClickListener {
     PixabayViewModel viewModel;
-    ImageAdapter imageAdapter;
-    private Handler handler = new Handler();
+    WordAdapter wordAdapter;
+    CategoryFragmentArgs args;
 
     @Override
     public FragmentWordsBinding bind() {
@@ -37,59 +32,48 @@ public class WordsFragment extends BaseFragment<FragmentWordsBinding> {
         super.onViewCreated(view, savedInstanceState);
         viewModel = new ViewModelProvider(this).get(PixabayViewModel.class);
         initAdapter();
+        getArgs();
         initListeners();
+        initObserver();
 
+    }
+
+    private void initObserver() {
+        String category = args.getArgsFromCategoryToWords();
+        viewModel.getWords(category).observe(getViewLifecycleOwner(), wordModels -> {
+            if (wordModels != null) {
+                wordAdapter = new WordAdapter(wordModels, this);
+                binding.recyclerview.setAdapter(wordAdapter);
+            }
+
+        });
+    }
+
+    private void getArgs() {
+        if (getArguments() != null) {
+            args = CategoryFragmentArgs.fromBundle(getArguments());
+            String category = args.getArgsFromCategoryToWords();
+            binding.toolbar.setTitle(category);
+
+        }
     }
 
 
     private void initListeners() {
-        binding.etWords.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
+        binding.btnAddWord.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                CreateWordBottomSheetFragment createWordBottomSheetFragment = new CreateWordBottomSheetFragment();
+                createWordBottomSheetFragment.show(requireActivity().getSupportFragmentManager(), "word dialog opened");
 
             }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                if (handler != null) {
-                    handler = null;
-                }
-
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable) {
-                new Handler().postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        binding.progressBar.setVisibility(View.VISIBLE);
-                        String word = binding.etWords.getText().toString();
-                        viewModel.getImages(word).observe(getViewLifecycleOwner(), images -> {
-                            if (images != null) {
-                                binding.progressBar.setVisibility(View.GONE);
-                                imageAdapter.setApiData((ArrayList<Hits>) images);
-                                binding.recyclerview.setAdapter(imageAdapter);
-
-                            }
-
-
-                        });
-
-                    }
-                }, DELAY);
-
-            }
-
-
         });
 
 
     }
 
     private void initAdapter() {
-        imageAdapter = new ImageAdapter();
     }
 
     @Override

@@ -7,7 +7,6 @@ import javax.inject.Singleton;
 
 @Singleton
 public class PreferencesHelper {
-
     private final SharedPreferences sharedPreferences;
 
     @Inject

@@ -1,6 +1,7 @@
 plugins {
     id 'com.android.application'
     id 'dagger.hilt.android.plugin'
+    id 'androidx.navigation.safeargs'
 }
 
 android {
@@ -35,7 +36,7 @@ dependencies {
     // nav component
     def nav_version = "2.4.1"
     // room
-    def room_version = "2.4.1"
+    def room_version = "2.4.2"
 
 
     //retrofit
