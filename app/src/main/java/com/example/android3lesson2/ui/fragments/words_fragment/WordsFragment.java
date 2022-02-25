@@ -1,4 +1,4 @@
-package com.example.android3lesson2.ui.fragments;
+package com.example.android3lesson2.ui.fragments.words_fragment;
 
 import android.os.Bundle;
 import android.view.View;
@@ -10,7 +10,6 @@ import androidx.lifecycle.ViewModelProvider;
 import com.example.android3lesson2.adapters.WordAdapter;
 import com.example.android3lesson2.base.BaseFragment;
 import com.example.android3lesson2.databinding.FragmentWordsBinding;
-import com.example.android3lesson2.ui.fragments.dialog.CreateWordBottomSheetFragment;
 import com.example.android3lesson2.utils.interfaces.OnWordClickListener;
 import com.example.android3lesson2.viewmodel.PixabayViewModel;
 
@@ -18,9 +17,10 @@ import dagger.hilt.android.AndroidEntryPoint;
 
 @AndroidEntryPoint
 public class WordsFragment extends BaseFragment<FragmentWordsBinding> implements OnWordClickListener {
+
     PixabayViewModel viewModel;
     WordAdapter wordAdapter;
-    CategoryFragmentArgs args;
+    WordsFragmentArgs args;
 
     @Override
     public FragmentWordsBinding bind() {
@@ -31,7 +31,6 @@ public class WordsFragment extends BaseFragment<FragmentWordsBinding> implements
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         viewModel = new ViewModelProvider(this).get(PixabayViewModel.class);
-        initAdapter();
         getArgs();
         initListeners();
         initObserver();
@@ -39,11 +38,12 @@ public class WordsFragment extends BaseFragment<FragmentWordsBinding> implements
     }
 
     private void initObserver() {
-        String category = args.getArgsFromCategoryToWords();
+        String category = args.getFromCategoryToWords();
         viewModel.getWords(category).observe(getViewLifecycleOwner(), wordModels -> {
             if (wordModels != null) {
                 wordAdapter = new WordAdapter(wordModels, this);
                 binding.recyclerview.setAdapter(wordAdapter);
+
             }
 
         });
@@ -51,8 +51,8 @@ public class WordsFragment extends BaseFragment<FragmentWordsBinding> implements
 
     private void getArgs() {
         if (getArguments() != null) {
-            args = CategoryFragmentArgs.fromBundle(getArguments());
-            String category = args.getArgsFromCategoryToWords();
+            WordsFragmentArgs.fromBundle(getArguments());
+            String category = args.getFromCategoryToWords();
             binding.toolbar.setTitle(category);
 
         }
@@ -73,8 +73,6 @@ public class WordsFragment extends BaseFragment<FragmentWordsBinding> implements
 
     }
 
-    private void initAdapter() {
-    }
 
     @Override
     public void onDestroyView() {

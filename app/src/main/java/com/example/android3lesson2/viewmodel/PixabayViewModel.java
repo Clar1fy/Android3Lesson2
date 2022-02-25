@@ -21,6 +21,7 @@ import dagger.hilt.android.lifecycle.HiltViewModel;
 public class PixabayViewModel extends ViewModel {
     public MutableLiveData<List<Hits>> imageList = new MutableLiveData<>();
     public LiveData<List<CategoryModel>> categoryList = new MutableLiveData<>();
+    public LiveData<List<WordModel>> wordsList = new MutableLiveData<>();
     PixabayRepository repository;
     PreferencesHelper preferencesHelper;
     RoomHelper roomHelper;
@@ -60,7 +61,7 @@ public class PixabayViewModel extends ViewModel {
     }
 
     public LiveData<List<WordModel>> getWords(String userCategory) {
-        return roomHelper.getAllWords(userCategory);
+        return wordsList = repository.getWords(userCategory);
     }
 }
 

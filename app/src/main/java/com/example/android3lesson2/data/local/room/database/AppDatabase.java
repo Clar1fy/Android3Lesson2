@@ -8,7 +8,7 @@ import com.example.android3lesson2.data.local.room.daos.WordDao;
 import com.example.android3lesson2.data.local.room.models.CategoryModel;
 import com.example.android3lesson2.data.local.room.models.WordModel;
 
-@Database(entities = {CategoryModel.class, WordModel.class}, version = 1)
+@Database(entities = {CategoryModel.class, WordModel.class}, version = 2, exportSchema = false)
 public abstract class AppDatabase extends RoomDatabase {
     public abstract CategoryDao categoryDao();
 

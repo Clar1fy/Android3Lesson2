@@ -3,10 +3,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     android:orientation="vertical"
     android:padding="12dp"
-    android:background="@color/white"
-    tools:context=".ui.fragments.dialog.CreateCategoryBottomSheetFragment">
+    tools:context=".ui.fragments.category_fragment.CreateCategoryBottomSheetFragment">
 
     <TextView
         android:layout_width="wrap_content"

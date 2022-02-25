@@ -1,4 +1,4 @@
-package com.example.android3lesson2.ui.fragments.dialog;
+package com.example.android3lesson2.ui.fragments.words_fragment;
 
 import android.os.Bundle;
 import android.os.Handler;
@@ -25,9 +25,14 @@ import java.util.ArrayList;
 
 public class CreateWordBottomSheetFragment extends BottomSheetDialogFragment implements OnImageClickListener {
     FragmentCreateWordBottomSheetBinding binding;
+    WordsFragmentArgs args;
     PixabayViewModel viewModel;
-    Handler handler = new Handler();
+    OnImageClickListener onImageClickListener;
+    Handler handler;
     ImageAdapter imageAdapter;
+    String word;
+    String category;
+    int image;
 
     @Nullable
     @Override
@@ -42,7 +47,15 @@ public class CreateWordBottomSheetFragment extends BottomSheetDialogFragment imp
         viewModel = new ViewModelProvider(this).get(PixabayViewModel.class);
         initListeners();
         initAdapter();
+        getArgs();
 
+    }
+
+    private void getArgs() {
+        if (getArguments() != null) {
+            args = WordsFragmentArgs.fromBundle(getArguments());
+            category = args.getFromCategoryToWords();
+        }
     }
 
     private void initAdapter() {
@@ -74,12 +87,16 @@ public class CreateWordBottomSheetFragment extends BottomSheetDialogFragment imp
                         new Handler().postDelayed(new Runnable() {
                             @Override
                             public void run() {
-                                String word = binding.etWord.getText().toString();
+                                word = binding.etWord.getText().toString();
                                 viewModel.getImages(word).observe(getViewLifecycleOwner(), images -> {
                                     if (images != null) {
                                         binding.tvWord.setText(word);
                                         imageAdapter.setApiData((ArrayList<Hits>) images);
                                         binding.recyclerview.setAdapter(imageAdapter);
+                                        WordModel wordModel = new WordModel(word, category, image);
+                                        viewModel.insertWord(wordModel);
+
+
                                     }
 
 
@@ -98,8 +115,11 @@ public class CreateWordBottomSheetFragment extends BottomSheetDialogFragment imp
         });
     }
 
+
     @Override
     public void onClick(WordModel wordModel) {
+        image = wordModel.getImage();
+
 
     }
 }

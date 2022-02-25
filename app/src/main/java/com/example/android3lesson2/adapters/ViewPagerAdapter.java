@@ -14,6 +14,7 @@ import com.example.android3lesson2.utils.interfaces.OnPagerClickListener;
 import java.util.ArrayList;
 
 public class ViewPagerAdapter extends RecyclerView.Adapter<ViewPagerAdapter.ViewPagerHolder> {
+
     ArrayList<ViewPagerModel> list = new ArrayList<>();
     OnPagerClickListener onPagerClickListener;
 
