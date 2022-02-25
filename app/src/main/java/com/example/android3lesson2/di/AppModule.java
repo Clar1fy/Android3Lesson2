@@ -23,22 +23,24 @@ import retrofit2.converter.gson.GsonConverterFactory;
 @Module
 @InstallIn(SingletonComponent.class)
 public class AppModule {
-
-    @Provides
     @Singleton
+    @Provides
+
     public static PixabayRepository provideRepository(PixabayApi api) {
         return new PixabayRepository(api);
 
     }
 
-    @Provides
     @Singleton
+    @Provides
+
     public static PixabayViewModel provideViewModel(PixabayRepository repository, PreferencesHelper preferencesHelper, RoomHelper roomHelper) {
         return new PixabayViewModel(repository, preferencesHelper, roomHelper);
     }
 
-    @Provides
     @Singleton
+    @Provides
+
     public static PixabayApi providePixabay(OkHttpClient client) {
         return new Retrofit.Builder()
                 .baseUrl("https://pixabay.com/")
@@ -48,8 +50,9 @@ public class AppModule {
 
     }
 
-    @Provides
     @Singleton
+    @Provides
+
     public OkHttpClient provideOkHttpClient(Interceptor interceptor) {
         return new OkHttpClient().newBuilder()
                 .connectTimeout(30, TimeUnit.SECONDS)
@@ -61,6 +64,7 @@ public class AppModule {
 
     }
 
+    @Singleton
     @Provides
     public Interceptor provideLoggingInterceptor() {
         return new HttpLoggingInterceptor()

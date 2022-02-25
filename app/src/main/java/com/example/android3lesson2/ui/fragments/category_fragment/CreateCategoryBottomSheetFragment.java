@@ -56,4 +56,9 @@ public class CreateCategoryBottomSheetFragment extends BottomSheetDialogFragment
 
     }
 
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        binding = null;
+    }
 }

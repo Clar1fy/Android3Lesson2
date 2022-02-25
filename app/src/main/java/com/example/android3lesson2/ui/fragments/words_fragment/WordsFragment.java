@@ -10,13 +10,12 @@ import androidx.lifecycle.ViewModelProvider;
 import com.example.android3lesson2.adapters.WordAdapter;
 import com.example.android3lesson2.base.BaseFragment;
 import com.example.android3lesson2.databinding.FragmentWordsBinding;
-import com.example.android3lesson2.utils.interfaces.OnWordClickListener;
 import com.example.android3lesson2.viewmodel.PixabayViewModel;
 
 import dagger.hilt.android.AndroidEntryPoint;
 
 @AndroidEntryPoint
-public class WordsFragment extends BaseFragment<FragmentWordsBinding> implements OnWordClickListener {
+public class WordsFragment extends BaseFragment<FragmentWordsBinding> {
 
     PixabayViewModel viewModel;
     WordAdapter wordAdapter;
@@ -41,7 +40,7 @@ public class WordsFragment extends BaseFragment<FragmentWordsBinding> implements
         String category = args.getFromCategoryToWords();
         viewModel.getWords(category).observe(getViewLifecycleOwner(), wordModels -> {
             if (wordModels != null) {
-                wordAdapter = new WordAdapter(wordModels, this);
+                wordAdapter = new WordAdapter(wordModels);
                 binding.recyclerview.setAdapter(wordAdapter);
 
             }

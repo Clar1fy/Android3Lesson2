@@ -3,12 +3,12 @@ package com.example.android3lesson2.repository;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
+import com.example.android3lesson2.data.local.room.database.AppDatabase;
 import com.example.android3lesson2.data.local.room.models.CategoryModel;
 import com.example.android3lesson2.data.local.room.models.WordModel;
 import com.example.android3lesson2.models.network_model.Hits;
 import com.example.android3lesson2.models.network_model.PixabayResponse;
 import com.example.android3lesson2.network.PixabayApi;
-import com.example.android3lesson2.utils.app.App;
 
 import java.util.List;
 
@@ -20,6 +20,7 @@ import retrofit2.Response;
 
 public class PixabayRepository {
     public static PixabayRepository pixabayRepository;
+    AppDatabase appDatabase;
     PixabayApi api;
 
     @Inject
@@ -52,13 +53,13 @@ public class PixabayRepository {
 
     public LiveData<List<CategoryModel>> getCategories() {
         MutableLiveData<List<CategoryModel>> categoryList = new MutableLiveData<>();
-        categoryList.setValue((List<CategoryModel>) App.getDb().categoryDao().getAll());
+        categoryList.setValue((List<CategoryModel>) appDatabase.getDatabase().categoryDao().getAll());
         return categoryList;
     }
 
     public LiveData<List<WordModel>> getWords(String userCategory) {
         MutableLiveData<List<WordModel>> wordsList = new MutableLiveData<>();
-        wordsList.setValue((List<WordModel>) App.getDb().wordDao().getAll(userCategory));
+        wordsList.setValue((List<WordModel>) appDatabase.getDatabase().wordDao().getAll(userCategory));
         return wordsList;
     }
 
