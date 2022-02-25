@@ -9,6 +9,8 @@ import com.example.android3lesson2.data.local.room.models.CategoryModel;
 
 import java.util.List;
 
+import dagger.Provides;
+
 @Dao
 public interface CategoryDao {
     @Insert

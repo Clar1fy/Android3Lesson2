@@ -14,11 +14,11 @@ import javax.inject.Singleton;
 
 @Singleton
 public class RoomHelper {
-    public WordDao wordDao;
-    public CategoryDao categoryDao;
+    private WordDao wordDao;
+    private CategoryDao categoryDao;
 
     @Inject
-    public RoomHelper(WordDao wordDao, CategoryDao categoryDao) {
+    RoomHelper(WordDao wordDao, CategoryDao categoryDao) {
         this.wordDao = wordDao;
         this.categoryDao = categoryDao;
     }
@@ -37,6 +37,7 @@ public class RoomHelper {
         wordDao.insert(wordModel);
         return wordModel;
     }
+
     public LiveData<List<WordModel>> getAllWords(String userCategory) {
         return wordDao.getAll(userCategory);
     }

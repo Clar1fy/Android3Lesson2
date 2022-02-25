@@ -1,4 +1,4 @@
-package com.example.android3lesson2.ui.fragments;
+package com.example.android3lesson2.ui.fragments.category_fragment;
 
 import android.os.Bundle;
 import android.view.View;
@@ -11,7 +11,6 @@ import androidx.navigation.Navigation;
 import com.example.android3lesson2.adapters.CategoryAdapter;
 import com.example.android3lesson2.base.BaseFragment;
 import com.example.android3lesson2.databinding.FragmentCategoryBinding;
-import com.example.android3lesson2.ui.fragments.dialog.CreateCategoryBottomSheetFragment;
 import com.example.android3lesson2.utils.interfaces.OnCategoryClickListener;
 import com.example.android3lesson2.viewmodel.PixabayViewModel;
 
@@ -65,9 +64,8 @@ public class CategoryFragment extends BaseFragment<FragmentCategoryBinding> impl
 
     @Override
     public void onClick(String category) {
-        CategoryFragmentDirections.ActionCategoryFragmentToWordsFragment action
-                = CategoryFragmentDirections.actionCategoryFragmentToWordsFragment(category);
-        Navigation.findNavController(requireView()).navigate(action);
+        Navigation.findNavController(requireView()).navigate(CategoryFragmentDirections.actionCategoryFragmentToWordsFragment(category));
+
 
     }
 }

@@ -1,4 +1,4 @@
-package com.example.android3lesson2.ui.fragments.dialog;
+package com.example.android3lesson2.ui.fragments.category_fragment;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;

@@ -1,4 +1,4 @@
-package com.example.android3lesson2.ui.fragments;
+package com.example.android3lesson2.ui.fragments.boarding;
 
 import android.os.Bundle;
 import android.view.View;
