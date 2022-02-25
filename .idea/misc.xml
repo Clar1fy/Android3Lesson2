@@ -3,14 +3,20 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Clar1fy/AndroidStudioProjects/Android3Lesson2/app/src/main/res/drawable/bottom_line.xml" value="0.13" />
         <entry key="..\:/Users/Clar1fy/AndroidStudioProjects/Android3Lesson2/app/src/main/res/drawable/button_rectangle_background.xml" value="0.1485" />
         <entry key="..\:/Users/Clar1fy/AndroidStudioProjects/Android3Lesson2/app/src/main/res/drawable/ic_launcher_icon_background.xml" value="0.1485" />
+        <entry key="..\:/Users/Clar1fy/AndroidStudioProjects/Android3Lesson2/app/src/main/res/drawable/ic_plus.xml" value="0.1485" />
         <entry key="..\:/Users/Clar1fy/AndroidStudioProjects/Android3Lesson2/app/src/main/res/drawable/ic_toolbar_gradient_background.xml" value="0.1485" />
         <entry key="..\:/Users/Clar1fy/AndroidStudioProjects/Android3Lesson2/app/src/main/res/drawable/splash_screen.xml" value="0.14" />
         <entry key="..\:/Users/Clar1fy/AndroidStudioProjects/Android3Lesson2/app/src/main/res/drawable/splash_screen_gradient_background.xml" value="0.1485" />
         <entry key="..\:/Users/Clar1fy/AndroidStudioProjects/Android3Lesson2/app/src/main/res/layout/activity_main.xml" value="0.17074275362318841" />
-        <entry key="..\:/Users/Clar1fy/AndroidStudioProjects/Android3Lesson2/app/src/main/res/layout/fragment_board.xml" value="0.25" />
-        <entry key="..\:/Users/Clar1fy/AndroidStudioProjects/Android3Lesson2/app/src/main/res/layout/fragment_category.xml" value="0.1644021739130435" />
+        <entry key="..\:/Users/Clar1fy/AndroidStudioProjects/Android3Lesson2/app/src/main/res/layout/category_holder.xml" value="0.25" />
+        <entry key="..\:/Users/Clar1fy/AndroidStudioProjects/Android3Lesson2/app/src/main/res/layout/fragment_board.xml" value="0.22" />
+        <entry key="..\:/Users/Clar1fy/AndroidStudioProjects/Android3Lesson2/app/src/main/res/layout/fragment_category.xml" value="0.33" />
+        <entry key="..\:/Users/Clar1fy/AndroidStudioProjects/Android3Lesson2/app/src/main/res/layout/fragment_create_category.xml" value="0.25" />
+        <entry key="..\:/Users/Clar1fy/AndroidStudioProjects/Android3Lesson2/app/src/main/res/layout/fragment_create_category_bottom_sheet.xml" value="0.1644021739130435" />
+        <entry key="..\:/Users/Clar1fy/AndroidStudioProjects/Android3Lesson2/app/src/main/res/layout/fragment_create_word_bottom_sheet.xml" value="0.22" />
         <entry key="..\:/Users/Clar1fy/AndroidStudioProjects/Android3Lesson2/app/src/main/res/layout/fragment_main_board.xml" value="0.22" />
         <entry key="..\:/Users/Clar1fy/AndroidStudioProjects/Android3Lesson2/app/src/main/res/layout/fragment_words.xml" value="0.2" />
         <entry key="..\:/Users/Clar1fy/AndroidStudioProjects/Android3Lesson2/app/src/main/res/layout/image_holder.xml" value="0.1644021739130435" />

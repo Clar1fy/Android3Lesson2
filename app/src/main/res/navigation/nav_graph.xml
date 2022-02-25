@@ -13,17 +13,24 @@
         tools:layout="@layout/fragment_category">
         <action
             android:id="@+id/action_categoryFragment_to_wordsFragment"
-            app:destination="@id/wordsFragment" />
+            app:destination="@id/wordsFragment" >
+            <argument
+                android:name="1"
+                app:argType="string" />
+
+        </action>
+
+        <argument
+            android:name="argsFromCategoryToWords"
+            app:argType="string" />
+
+
     </fragment>
     <fragment
         android:id="@+id/wordsFragment"
         android:name="com.example.android3lesson2.ui.fragments.WordsFragment"
         android:label="fragment_words"
-        tools:layout="@layout/fragment_words">
-        <action
-            android:id="@+id/action_wordsFragment_to_categoryFragment"
-            app:destination="@id/categoryFragment" />
-    </fragment>
+        tools:layout="@layout/fragment_words" />
     <fragment
         android:id="@+id/mainBoardFragment"
         android:name="com.example.android3lesson2.ui.fragments.MainBoardFragment"

@@ -1,6 +1,5 @@
 package com.example.android3lesson2.ui.fragments;
 
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 
@@ -25,7 +24,6 @@ import dagger.hilt.android.AndroidEntryPoint;
 
 @AndroidEntryPoint
 public class MainBoardFragment extends BaseFragment<FragmentMainBoardBinding> implements OnPagerClickListener {
-    SharedPreferences sharedPreferences;
 
 
     ViewPagerAdapter adapter;
@@ -46,6 +44,22 @@ public class MainBoardFragment extends BaseFragment<FragmentMainBoardBinding> im
         initAdapter();
         initListeners();
         checkIfShown();
+        enableButton();
+    }
+
+    private void enableButton() {
+        binding.viewpager.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+                super.onPageScrolled(position, positionOffset, positionOffsetPixels);
+                if (position == 4) {
+                    binding.btnGetStarted.setVisibility(View.VISIBLE);
+                } else {
+                    binding.btnGetStarted.setVisibility(View.GONE);
+                }
+            }
+
+        });
     }
 
     private void initListeners() {
@@ -60,7 +74,7 @@ public class MainBoardFragment extends BaseFragment<FragmentMainBoardBinding> im
 
     private void checkIfShown() {
         if (viewModel.getBoolean()) {
-            Navigation.findNavController(requireView()).navigate(R.id.wordsFragment);
+            Navigation.findNavController(requireView()).navigate(R.id.categoryFragment);
         } else {
             viewModel.setBoolean(false);
         }
@@ -68,16 +82,9 @@ public class MainBoardFragment extends BaseFragment<FragmentMainBoardBinding> im
 
     @Override
     public void onClick(ViewPagerModel viewPagerModel) {
-        binding.viewpager.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
-            @Override
-            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-                super.onPageScrolled(position, positionOffset, positionOffsetPixels);
-                if (position == 4) {
-                    binding.btnGetStarted.setVisibility(View.VISIBLE);
-                }
-            }
-        });
+
     }
+
 
     private void initAdapter() {
         adapter = new ViewPagerAdapter(client.getList(), this);

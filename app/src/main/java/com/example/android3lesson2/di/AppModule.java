@@ -1,6 +1,7 @@
 package com.example.android3lesson2.di;
 
 import com.example.android3lesson2.data.local.PreferencesHelper;
+import com.example.android3lesson2.data.local.RoomHelper;
 import com.example.android3lesson2.network.PixabayApi;
 import com.example.android3lesson2.repository.PixabayRepository;
 import com.example.android3lesson2.viewmodel.PixabayViewModel;
@@ -32,8 +33,8 @@ public class AppModule {
 
     @Provides
     @Singleton
-    public static PixabayViewModel provideViewModel(PixabayRepository repository, PreferencesHelper preferencesHelper) {
-        return new PixabayViewModel(repository, preferencesHelper);
+    public static PixabayViewModel provideViewModel(PixabayRepository repository, PreferencesHelper preferencesHelper, RoomHelper roomHelper) {
+        return new PixabayViewModel(repository, preferencesHelper, roomHelper);
     }
 
     @Provides

@@ -1,9 +1,13 @@
 package com.example.android3lesson2.viewmodel;
 
+import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.example.android3lesson2.data.local.PreferencesHelper;
+import com.example.android3lesson2.data.local.RoomHelper;
+import com.example.android3lesson2.data.local.room.models.CategoryModel;
+import com.example.android3lesson2.data.local.room.models.WordModel;
 import com.example.android3lesson2.models.network_model.Hits;
 import com.example.android3lesson2.repository.PixabayRepository;
 
@@ -16,13 +20,16 @@ import dagger.hilt.android.lifecycle.HiltViewModel;
 @HiltViewModel
 public class PixabayViewModel extends ViewModel {
     public MutableLiveData<List<Hits>> imageList = new MutableLiveData<>();
+    public LiveData<List<CategoryModel>> categoryList = new MutableLiveData<>();
     PixabayRepository repository;
     PreferencesHelper preferencesHelper;
+    RoomHelper roomHelper;
 
     @Inject
-    public PixabayViewModel(PixabayRepository repository, PreferencesHelper preferencesHelper) {
+    public PixabayViewModel(PixabayRepository repository, PreferencesHelper preferencesHelper, RoomHelper roomHelper) {
         this.repository = repository;
         this.preferencesHelper = preferencesHelper;
+        this.roomHelper = roomHelper;
     }
 
 
@@ -37,6 +44,23 @@ public class PixabayViewModel extends ViewModel {
 
     public void setBoolean(boolean isShown) {
         preferencesHelper.setBoolean(isShown);
+    }
+
+    public void insertCategory(CategoryModel categoryModel) {
+        roomHelper.insertCategory(categoryModel);
+    }
+
+    public LiveData<List<CategoryModel>> getCategories() {
+        return categoryList = repository.getCategories();
+    }
+
+    public void insertWord(WordModel wordModel) {
+        roomHelper.insertWord(wordModel);
+
+    }
+
+    public LiveData<List<WordModel>> getWords(String userCategory) {
+        return roomHelper.getAllWords(userCategory);
     }
 }
 
