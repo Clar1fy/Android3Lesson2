@@ -25,14 +25,14 @@ public class RoomHelper {
     private CategoryDao categoryDao;
 
     @Inject
-    RoomHelper(WordDao wordDao, CategoryDao categoryDao) {
+    RoomHelper(WordDao wordDao, CategoryDao categoryDao, AppDatabase appDatabase) {
         this.wordDao = wordDao;
         this.categoryDao = categoryDao;
+        this.appDatabase = appDatabase;
     }
 
     public AppDatabase createDatabase(@ApplicationContext Context context) {
-        appDatabase = Room.databaseBuilder(context, AppDatabase.class, "database").allowMainThreadQueries().build();
-        return appDatabase.getDatabase();
+        return  Room.databaseBuilder(context, AppDatabase.class, "database").allowMainThreadQueries().build();
 
 
     }
@@ -42,8 +42,8 @@ public class RoomHelper {
         return categoryModel;
     }
 
-    public LiveData<List<CategoryModel>> getAllCategories(LiveData<List<CategoryModel>> categoryList) {
-        return categoryList = categoryDao.getAll();
+    public LiveData<List<CategoryModel>> getAllCategories() {
+        return categoryDao.getAll();
 
     }
 

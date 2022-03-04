@@ -1,4 +1,4 @@
-package com.example.android3lesson2.models.network_model;
+package com.example.android3lesson2.network.responses.pixabay;
 
 import com.google.gson.annotations.SerializedName;
 
@@ -10,7 +10,7 @@ public class PixabayResponse {
     @SerializedName("totalHits")
     private Integer totalHits;
     @SerializedName("hits")
-    private List<Hits> hits = null;
+    private List<PixabayHits> hits = null;
 
     public Integer getTotal() {
         return total;
@@ -28,11 +28,11 @@ public class PixabayResponse {
         this.totalHits = totalHits;
     }
 
-    public List<Hits> getHits() {
+    public List<PixabayHits> getHits() {
         return hits;
     }
 
-    public void setHits(List<Hits> hits) {
+    public void setHits(List<PixabayHits> hits) {
         this.hits = hits;
     }
 }

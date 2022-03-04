@@ -8,7 +8,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.android3lesson2.databinding.FragmentBoardBinding;
-import com.example.android3lesson2.models.viewpager_model.ViewPagerModel;
+import com.example.android3lesson2.model.ViewPagerModel;
 import com.example.android3lesson2.utils.interfaces.OnPagerClickListener;
 
 import java.util.ArrayList;
@@ -20,6 +20,14 @@ public class ViewPagerAdapter extends RecyclerView.Adapter<ViewPagerAdapter.View
 
     public ViewPagerAdapter(ArrayList<ViewPagerModel> list, OnPagerClickListener onPagerClickListener) {
         this.list = list;
+        this.onPagerClickListener = onPagerClickListener;
+    }
+
+    public void setList(ArrayList<ViewPagerModel> list) {
+        this.list = list;
+    }
+
+    public void setOnPagerClickListener(OnPagerClickListener onPagerClickListener) {
         this.onPagerClickListener = onPagerClickListener;
     }
 

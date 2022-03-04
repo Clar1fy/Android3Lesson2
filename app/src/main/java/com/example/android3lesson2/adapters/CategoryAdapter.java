@@ -18,9 +18,12 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
     OnCategoryClickListener onCategoryClickListener;
     List<CategoryModel> list = new ArrayList<>();
 
-    public CategoryAdapter(OnCategoryClickListener onCategoryClickListener, List<CategoryModel> list) {
-        this.onCategoryClickListener = onCategoryClickListener;
+    public void setList(List<CategoryModel> list) {
         this.list = list;
+    }
+
+    public void setOnCategoryClickListener(OnCategoryClickListener onCategoryClickListener) {
+        this.onCategoryClickListener = onCategoryClickListener;
     }
 
     @NonNull
@@ -46,21 +49,15 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
         public CategoryHolder(@NonNull CategoryHolderBinding binding) {
             super(binding.getRoot());
             this.binding = binding;
-            binding.getRoot().setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
 
-                }
-            });
         }
 
         public void onBind(CategoryModel categoryModel) {
             binding.tvCard.setText(categoryModel.getTitle());
-            binding.getRoot().setOnClickListener(new View.OnClickListener() {
+            itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    onCategoryClickListener.onClick(categoryModel.getTitle());
-
+                    onCategoryClickListener.onClick(categoryModel.getTitle(), getAdapterPosition());
                 }
             });
 

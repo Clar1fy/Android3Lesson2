@@ -7,21 +7,18 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.lifecycle.LiveData;
-import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.android3lesson2.data.local.room.models.CategoryModel;
 import com.example.android3lesson2.databinding.FragmentCreateCategoryBottomSheetBinding;
-import com.example.android3lesson2.viewmodel.PixabayViewModel;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 
-import java.util.List;
+import dagger.hilt.android.AndroidEntryPoint;
 
+@AndroidEntryPoint
 public class CreateCategoryBottomSheetFragment extends BottomSheetDialogFragment {
-    LiveData<List<CategoryModel>> list = new MutableLiveData<>();
-    PixabayViewModel viewModel;
     private FragmentCreateCategoryBottomSheetBinding binding;
+    private CategoryViewModel viewModel;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -39,7 +36,7 @@ public class CreateCategoryBottomSheetFragment extends BottomSheetDialogFragment
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         initListeners();
-        viewModel = new ViewModelProvider(this).get(PixabayViewModel.class);
+        viewModel = new ViewModelProvider(this).get(CategoryViewModel.class);
     }
 
 

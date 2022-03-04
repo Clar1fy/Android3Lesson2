@@ -15,7 +15,11 @@
             android:id="@+id/action_categoryFragment_to_wordsFragment"
             app:destination="@id/wordsFragment">
 
+
         </action>
+        <action
+            android:id="@+id/action_categoryFragment_to_createCategoryBottomSheetFragment"
+            app:destination="@id/createCategoryBottomSheetFragment" />
 
 
     </fragment>
@@ -24,15 +28,35 @@
         android:name="com.example.android3lesson2.ui.fragments.words_fragment.WordsFragment"
         android:label="fragment_words"
         tools:layout="@layout/fragment_words">
+
         <argument
-            android:name="fromCategoryToWords"
+            android:name="stringFromDialogToWords"
             app:argType="string" />
+        <argument
+            android:name="intFromDialogToWords"
+            app:argType="integer" />
+
+
     </fragment>
     <fragment
         android:id="@+id/mainBoardFragment"
         android:name="com.example.android3lesson2.ui.fragments.boarding.MainBoardFragment"
         android:label="fragment_main_board"
         tools:layout="@layout/fragment_main_board" />
+    <dialog
+        android:id="@+id/createCategoryBottomSheetFragment"
+        android:name="com.example.android3lesson2.ui.fragments.category_fragment.CreateCategoryBottomSheetFragment"
+        android:label="fragment_create_category_bottom_sheet"
+        tools:layout="@layout/fragment_create_category_bottom_sheet" />
+    <dialog
+        android:id="@+id/createWordBottomSheetFragment"
+        android:name="com.example.android3lesson2.ui.fragments.words_fragment.CreateWordBottomSheetFragment"
+        android:label="fragment_create_word_bottom_sheet"
+        tools:layout="@layout/fragment_create_word_bottom_sheet">
+        <action
+            android:id="@+id/action_createWordBottomSheetFragment_to_wordsFragment"
+            app:destination="@id/wordsFragment" />
+    </dialog>
 
 
 </navigation>
