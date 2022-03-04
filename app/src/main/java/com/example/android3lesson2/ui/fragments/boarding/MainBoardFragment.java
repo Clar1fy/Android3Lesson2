@@ -14,21 +14,21 @@ import com.example.android3lesson2.adapters.ViewPagerAdapter;
 import com.example.android3lesson2.base.BaseFragment;
 import com.example.android3lesson2.data.local.client.ViewPagerClient;
 import com.example.android3lesson2.databinding.FragmentMainBoardBinding;
-import com.example.android3lesson2.models.viewpager_model.ViewPagerModel;
+import com.example.android3lesson2.model.ViewPagerModel;
 import com.example.android3lesson2.utils.interfaces.OnPagerClickListener;
-import com.example.android3lesson2.viewmodel.PixabayViewModel;
 
 import java.util.ArrayList;
 
 import dagger.hilt.android.AndroidEntryPoint;
 
 @AndroidEntryPoint
-public class MainBoardFragment extends BaseFragment<FragmentMainBoardBinding> implements OnPagerClickListener {
+public class MainBoardFragment extends BaseFragment<FragmentMainBoardBinding> {
+    OnPagerClickListener onPagerClickListener;
 
 
     ViewPagerAdapter adapter;
     ViewPagerClient client = new ViewPagerClient();
-    PixabayViewModel viewModel;
+    OnBoardViewModel viewModel;
     ArrayList<ViewPagerModel> list = new ArrayList<>();
 
     @Override
@@ -40,7 +40,7 @@ public class MainBoardFragment extends BaseFragment<FragmentMainBoardBinding> im
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        viewModel = new ViewModelProvider(this).get(PixabayViewModel.class);
+        viewModel = new ViewModelProvider(this).get(OnBoardViewModel.class);
         initAdapter();
         initListeners();
         checkIfShown();
@@ -80,14 +80,10 @@ public class MainBoardFragment extends BaseFragment<FragmentMainBoardBinding> im
         }
     }
 
-    @Override
-    public void onClick(ViewPagerModel viewPagerModel) {
-
-    }
-
 
     private void initAdapter() {
-        adapter = new ViewPagerAdapter(client.getList(), this);
+        adapter.setList(client.getList());
+        adapter.setOnPagerClickListener(onPagerClickListener);
         binding.viewpager.setAdapter(adapter);
         binding.dotsIndicator.setViewPager2(binding.viewpager);
 
@@ -99,4 +95,6 @@ public class MainBoardFragment extends BaseFragment<FragmentMainBoardBinding> im
         super.onDestroyView();
         binding = null;
     }
+
+
 }

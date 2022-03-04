@@ -1,7 +1,7 @@
 package com.example.android3lesson2.data.local.client;
 
 import com.example.android3lesson2.R;
-import com.example.android3lesson2.models.viewpager_model.ViewPagerModel;
+import com.example.android3lesson2.model.ViewPagerModel;
 
 import java.util.ArrayList;
 

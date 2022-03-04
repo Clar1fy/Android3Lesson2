@@ -12,12 +12,13 @@ import com.example.android3lesson2.adapters.CategoryAdapter;
 import com.example.android3lesson2.base.BaseFragment;
 import com.example.android3lesson2.databinding.FragmentCategoryBinding;
 import com.example.android3lesson2.utils.interfaces.OnCategoryClickListener;
-import com.example.android3lesson2.viewmodel.PixabayViewModel;
 
+import dagger.hilt.android.AndroidEntryPoint;
 
-public class CategoryFragment extends BaseFragment<FragmentCategoryBinding> implements OnCategoryClickListener {
-    PixabayViewModel viewModel;
-    CategoryAdapter categoryAdapter;
+@AndroidEntryPoint
+public class CategoryFragment extends BaseFragment<FragmentCategoryBinding> {
+    private CategoryViewModel viewModel;
+    private CategoryAdapter categoryAdapter;
 
 
     @Override
@@ -28,9 +29,14 @@ public class CategoryFragment extends BaseFragment<FragmentCategoryBinding> impl
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        viewModel = new ViewModelProvider(this).get(PixabayViewModel.class);
+        viewModel = new ViewModelProvider(this).get(CategoryViewModel.class);
         initListeners();
+        initAdapter();
         initObserver();
+    }
+
+    private void initAdapter() {
+        categoryAdapter = new CategoryAdapter();
     }
 
 
@@ -43,12 +49,19 @@ public class CategoryFragment extends BaseFragment<FragmentCategoryBinding> impl
 
             }
         });
+        categoryAdapter.setOnCategoryClickListener(new OnCategoryClickListener() {
+            @Override
+            public void onClick(String category, int position) {
+                Navigation.findNavController(requireView()).navigate(CategoryFragmentDirections.actionCategoryFragmentToWordsFragment(category, position));
+
+            }
+        });
     }
 
     private void initObserver() {
         viewModel.getCategories().observe(getViewLifecycleOwner(), categoryModels -> {
             if (categoryModels != null) {
-                categoryAdapter = new CategoryAdapter(this, categoryModels);
+                categoryAdapter.setList(categoryModels);
                 binding.recyclerview.setAdapter(categoryAdapter);
             }
 
@@ -56,13 +69,6 @@ public class CategoryFragment extends BaseFragment<FragmentCategoryBinding> impl
         });
     }
 
-
-    @Override
-    public void onClick(String category) {
-        Navigation.findNavController(requireView()).navigate(CategoryFragmentDirections.actionCategoryFragmentToWordsFragment(category));
-
-
-    }
 
     @Override
     public void onDestroyView() {

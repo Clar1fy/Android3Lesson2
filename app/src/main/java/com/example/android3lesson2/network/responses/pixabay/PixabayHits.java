@@ -1,8 +1,8 @@
-package com.example.android3lesson2.models.network_model;
+package com.example.android3lesson2.network.responses.pixabay;
 
 import com.google.gson.annotations.SerializedName;
 
-public class Hits {
+public class PixabayHits {
     @SerializedName("id")
     private Integer id;
     @SerializedName("pageURL")

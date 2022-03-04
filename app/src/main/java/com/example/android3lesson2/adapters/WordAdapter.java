@@ -15,7 +15,6 @@ import java.util.List;
 public class WordAdapter extends RecyclerView.Adapter<WordAdapter.WordHolder> {
     List<WordModel> list = new ArrayList<>();
 
-
     public WordAdapter(List<WordModel> list) {
         this.list = list;
 

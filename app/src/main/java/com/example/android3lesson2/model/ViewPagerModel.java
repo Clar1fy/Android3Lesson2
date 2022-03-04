@@ -1,4 +1,4 @@
-package com.example.android3lesson2.models.viewpager_model;
+package com.example.android3lesson2.model;
 
 public class ViewPagerModel {
     private String title;
